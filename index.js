@@ -100,6 +100,7 @@ function cumleKur(
 /* (Oto test yok) cumleKur fonksiyonuna yalnızca 1 parametre göndererek "Hello World!" stringini elde edin, 
 sonucu konsolde gözlemleyin */
 
+
 /* (Oto test yok) cumleKur fonksiyonuna yalnızca 2 parametre göndererek "Hello World!" stringini elde edin, 
 sonucu konsolde gözlemleyin */
 
@@ -107,6 +108,9 @@ sonucu konsolde gözlemleyin */
 elde edin, sonucu `bircumle` değişkenine atayın ve konsolde gözlemleyin */
 var bircumle;
 
+
+bircumle = cumleKur("Ben ", "iyi " , "bir" , " yazılımcı" , " olacağım!");
+console.log(bircumle);
 /* kodlar buraya */
 
 //		Sayfanın en üstünde global olarak tanımlanmış `cumleler` adında bir dizi bulunmaktadır. Bu dizinin
@@ -128,9 +132,13 @@ var bircumle;
 			5. Oluşturulan yeni dizi döndürülecek.
 	*/
 
-function cumlelereDonustur(/* kodlar buraya */) {
-  /* kodlar buraya */
-}
+  function cumlelereDonustur(cumleDizisi, ayrac = ",") {
+    const sonuc = cumleDizisi.map((kelimeDizisi) => kelimeDizisi.join(ayrac));
+    return sonuc;
+  }
+
+  console.log(cumlelereDonustur(cumleler,""));
+  console.log("cumlelereDonustur",cumlelereDonustur(cumleler));
 
 /* GÖREV 2:
 		paragrafOlustur fonksiyonuna aşağıdakileri uygulayın.
@@ -145,16 +153,34 @@ function cumlelereDonustur(/* kodlar buraya */) {
 			6. Oluşturulan paragraf döndürülecek
 	*/
 
-function paragrafOlustur(/* kodlar buraya */) {
-  /* kodlar buraya */
+function paragrafOlustur(cumleDizisi,cumleKurCallBack,cumlelereDonusturCallBack) {
+     const yeniCumleler = cumlelereDonusturCallBack(cumleDizisi," ");
+     console.log("yeniCumleler",yeniCumleler);
+
+
+return cumleKurCallBack(
+  yeniCumleler[1],
+  yeniCumleler[3],
+  yeniCumleler[5],
+  yeniCumleler[7],
+  yeniCumleler[9]
+);
+
 }
+console.log(paragrafOlustur(cumleler,cumleKur,cumlelereDonustur));
 
 /* 	GÖREV 3:
 		Yukarıda isimleri sebzeler ve meyveler olan 2 dizi bulunmaktadır. Bu dizileri kullanarak aşağıdaki görevleri tamamlayın.
 			3a. meyveler dizisinin ilk ve son elemanlarını diziden çıkartın. (.pop ve .shift metodlarını kullanın)
  */
-//3a çözümü
-/* kodlar buraya */
+
+
+      meyveler.shift();
+      console.log(meyveler);
+      
+      meyveler.pop();
+      console.log(meyveler);
+
 
 /* 			3b.  Bir tavşan ve bir kirpi arkadaşlar sebzeler dizimizin peşine düştü. Tavşan => 🐇 , Kirpi=> 🦔 , 
 Tavşanla kirpi sebzeleri ele geçirmek için bir plan kurdular. Tavşan diziye önden saldıracak, kirpi ise 
@@ -162,7 +188,13 @@ arkalarından dolaşacak. Varsayalım ki arkadaşların planları başarılı ol
 Kirpiyi dizinin son elemanına ekleyin 🦔
  */
 //3b çözümü
-/* kodlar buraya */
+
+     sebzeler.push('🦔');
+     console.log(sebzeler);
+
+     sebzeler.unshift('🐇');
+     console.log(sebzeler);
+
 
 /* 			3c. manav isminde bir dizi oluşturun.`meyveler` dizisi ilk elemanlara, `sebzeler` dizisi son 
 elemanlara denk gelecek şekilde, iki diziyi birleştirip sonucu manav dizisine aktarın. (.concat metodu)
@@ -170,7 +202,9 @@ elemanlara denk gelecek şekilde, iki diziyi birleştirip sonucu manav dizisine 
 //3c çözümü
 /* kodlar buraya */
 
-var manav;
+
+const manav = meyveler.concat(sebzeler);
+console.log(manav);
 
 /* 	GÖREV 4:
 		Yeni kurulmuş bir mesajlaşma startup firması atılan mesajları emojilerle zenginleştirmek istiyor. 
@@ -189,9 +223,30 @@ var manav;
 			4. elde edilen string döndürülecek
  */
 
-function emojileriDonustur(/* kodlar buraya */) {
-  /* kodlar buraya */
-}
+      function emojileriDonustur(mesaj, emojiler) {
+        for (let sembol in emojiler) {
+          const emoji = emojiler[sembol];
+          const buyukSembol = sembol.toUpperCase();
+          const kucukSembol = sembol.toLowerCase();
+          mesaj = mesaj.replaceAll(sembol, emoji).replaceAll(buyukSembol, emoji).replaceAll(kucukSembol, emoji);
+        }
+        return mesaj;
+      }
+
+       emojiler = {
+        ":)": "🙂",
+        ":(": "😔",
+        ":d": "😁",
+        ":p": "😛",
+        ":o": "😱",
+        "<3": "❤️",
+      };
+      
+      const mesaj = "Merhaba :) Nasılsın? :D Bugünkü olay çok komikti :p ama sonra çok şaşırdık :o biraz da üzüldük :( ama yine de seviliyorsun <3";
+      const donusturulmusMesaj = emojileriDonustur(mesaj, emojiler);
+      console.log(donusturulmusMesaj)
+
+      console.log("emojileriDonustur",emojileriDonustur("merhaba",":D"))
 
 /*  Bu satırın aşağısındaki kodları lütfen değiştirmeyin  */
 function sa() {
